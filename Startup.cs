@@ -1,3 +1,4 @@
+using App.ExtentionMethods;
 using App.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,7 @@ namespace App
                 options.ViewLocationFormats.Add("/MyView/{1}/{0}" + RazorViewEngine.ViewExtension);
             });
             services.AddSingleton<ProductService>();
+            services.AddSingleton<PlanetService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,17 +59,25 @@ namespace App
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.AddStatusCodePage();
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
+
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "product",
+                    pattern: "{controller}/{action=Index}/{id?}",
+                    areaName: "ProductManage"
+                );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
                 endpoints.MapRazorPages();
             });
         }
