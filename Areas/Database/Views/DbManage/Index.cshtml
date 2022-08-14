@@ -1,0 +1,46 @@
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext dbContext
+@{
+    ViewData["Title"] = "Thông tin về CSDL";
+    var connect = dbContext.Database.GetDbConnection();
+    var dbname = connect.Database;
+    var canConnected = dbContext.Database.CanConnect();
+}
+<partial name="_StatusMessage"></partial>
+<h2>Thông tin về CSDL</h2>
+<p>Database: @dbname</p>
+<p>Source: @connect.DataSource</p>
+<p>State: @connect.State</p>
+<hr>
+<h2>Migrations</h2>
+@foreach (var migration in dbContext.Database.GetAppliedMigrations())
+{
+    <p>@migration</p>
+}
+@if (dbContext.Database.GetPendingMigrations().Any())
+{
+    <form method="post">
+        <button type="submit" class="btn btn-info" asp-action="Migrate">Update migrations</button>
+    </form>
+}
+@foreach (var migration in dbContext.Database.GetPendingMigrations())
+{
+    <p>@migration (pending)</p>
+}
+@if (!canConnected)
+{
+    <p class="alert alert-danger">Không có khả năng kết nối database</p>
+}
+else
+{
+    <h2>Các table</h2>
+    await dbContext.Database.OpenConnectionAsync();
+    var table = dbContext.Database.GetDbConnection().GetSchema("Tables");
+    <ul>
+        @foreach (System.Data.DataRow row in table.Rows)
+        {
+            <li>@row["TABLE_NAME"]</li>
+        }
+    </ul>
+    <a class="btn btn-danger" asp-action="DeleteDb">Xoá database: @dbname</a>
+}
