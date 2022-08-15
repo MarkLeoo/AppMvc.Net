@@ -1,0 +1,35 @@
+{
+  "name": "appmvc.net",
+  "version": "1.0.0",
+  "description": "appmvc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkLeoo/AppMvc.Net.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkLeoo/AppMvc.Net/issues"
+  },
+  "homepage": "https://github.com/MarkLeoo/AppMvc.Net#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-less": "^5.0.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^7.0.1",
+    "postcss": "^8.4.16",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.4"
+  },
+  "devDependencies": {
+    "gulp-sass": "^5.1.0"
+  }
+}

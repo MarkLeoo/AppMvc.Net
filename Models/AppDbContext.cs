@@ -1,3 +1,4 @@
+using App.Models.Contacts;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Models
@@ -16,5 +17,7 @@ namespace App.Models
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
