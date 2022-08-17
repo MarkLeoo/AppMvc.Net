@@ -25,7 +25,7 @@ namespace App.Areas.Database.Controllers
             _roleManager = roleManager;
         }
 
-    public IActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -35,9 +35,9 @@ namespace App.Areas.Database.Controllers
         {
             return View();
         }
-        
+
         [TempData]
-        public string StatusMessage { get; set;}
+        public string StatusMessage { get; set; }
 
         [HttpPost]
         public async Task<IActionResult> DeleteDbAsync()
@@ -45,7 +45,7 @@ namespace App.Areas.Database.Controllers
             var success = await _dbContext.Database.EnsureDeletedAsync();
 
             StatusMessage = success ? "Xóa Database thành công" : "Không xóa được Db";
-            
+
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]
@@ -54,7 +54,7 @@ namespace App.Areas.Database.Controllers
             await _dbContext.Database.MigrateAsync();
 
             StatusMessage = "Cập nhật Database thành công";
-            
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -85,7 +85,7 @@ namespace App.Areas.Database.Controllers
 
                 await _userManager.CreateAsync(useradmin, "admin123");
                 await _userManager.AddToRoleAsync(useradmin, RoleName.Administrator);
-                
+
             }
             StatusMessage = "Vừa seed Database";
             return RedirectToAction("Index");

@@ -8,8 +8,7 @@
 @if (result.Succeeded)
 {
     <div class="dropdown">
-        <a class="btn btn-outline-danger dropdown-toggle" href="#"
-            id="managedropdownmenu" data-toggle="dropdown">
+        <a class="btn btn-outline-danger dropdown-toggle" href="#" id="managedropdownmenu" data-toggle="dropdown">
             Manage
         </a>
         <div class="dropdown-menu" aria-labelledby="managedropdownmenu">
@@ -18,13 +17,13 @@
             </a>
             <a class="dropdown-item" asp-action="Index" asp-controller="Contact" asp-area="Contact">
                 Quản lý liên hệ
-            </a>    
+            </a>
             <a class="dropdown-item" asp-action="Index" asp-controller="Role" asp-area="Identity">
                 Quản lý role (vai trò)
-            </a>  
+            </a>
             <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Identity">
                 Quản lý thành viên
-            </a>                         
+            </a>
         </div>
     </div>
 }
